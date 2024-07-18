@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">SqliteTutorial</string>
+    <string name="word">Word</string>
+    <string name="wmeaning">Word meaning</string>
+    <string name="antonym">Antonym</string>
+    <string name="ameaning">Antonym meaning</string>
+    <string name="update_button">Update</string>
+    <string name="delete_button">Delete</string>
+</resources>
