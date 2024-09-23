@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".AddActivity"
     android:padding="30dp"
+    android:background="@color/background"
 >
 
     <EditText
@@ -16,6 +17,7 @@
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/word"
+        android:textColor="@color/text"
         android:inputType="textNoSuggestions"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,6 +32,7 @@
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/wmeaning"
+        android:textColor="@color/text"
         android:inputType="textNoSuggestions"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,6 +47,7 @@
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/antonym"
+        android:textColor="@color/text"
         android:inputType="textNoSuggestions"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -59,6 +63,7 @@
         android:ems="10"
         android:hint="@string/ameaning"
         android:inputType="textNoSuggestions"
+        android:textColor="@color/text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/antonym_input"
@@ -72,6 +77,8 @@
         android:text="Add"
         android:textSize="20sp"
         android:textAllCaps="false"
+        android:textColor="@color/text"
+        android:background="@color/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ameaning_input"

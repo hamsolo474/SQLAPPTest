@@ -10,15 +10,16 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 public class UpdateActivity: AppCompatActivity() {
-    var id: String = ""
     var word_input: EditText? = null
     var wmeaning_input: EditText? = null
     var antonym_input: EditText? = null
     var ameaning_input: EditText? = null
-    var word: String = ""
-    var wmeaning: String = ""
-    var antonym: String = ""
-    var ameaning: String = ""
+
+    private lateinit var id: String
+    private lateinit var word: String
+    private lateinit var wmeaning: String
+    private lateinit var antonym: String
+    private lateinit var ameaning: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,18 +29,25 @@ public class UpdateActivity: AppCompatActivity() {
         wmeaning_input = findViewById<EditText>(R.id.wmeaning_input2)
         antonym_input = findViewById<EditText>(R.id.antonym_input2)
         ameaning_input = findViewById<EditText>(R.id.ameaning_input2)
-
         getAndSetIntentData()
+
+        // I'm redefining the reference here because .updateRow cant take a mutable object
+        // the error was
+        // "Smart cast to 'EditText!' is impossible, because 'word_input' is a mutable property that could have been changed by this time"
+        val update_word_input = findViewById<EditText>(R.id.word_input2)
+        val update_wmeaning_input = findViewById<EditText>(R.id.wmeaning_input2)
+        val update_antonym_input = findViewById<EditText>(R.id.antonym_input2)
+        val update_ameaning_input = findViewById<EditText>(R.id.ameaning_input2)
 
         val update_button = findViewById<Button>(R.id.update_button)
         update_button.setOnClickListener {
             val myDB = MyDatabaseHelper(this)
             myDB.updateRow(
-                id,
-                word_input.toString().trim(),
-                wmeaning_input.toString().trim(),
-                antonym_input.toString().trim(),
-                ameaning_input.toString().trim()
+                id.toString(),
+                update_word_input.getText().toString().trim(),
+                update_wmeaning_input.getText().toString().trim(),
+                update_antonym_input.getText().toString().trim(),
+                update_ameaning_input.getText().toString().trim()
             )
         }
         val delete_button = findViewById<Button>(R.id.delete_button)
@@ -55,11 +63,11 @@ public class UpdateActivity: AppCompatActivity() {
             intent.hasExtra("antonym") &&
             intent.hasExtra("ameaning")
         ) {
-            val id = intent.getStringExtra("id")
-            val word = intent.getStringExtra("word")
-            val wmeaning = intent.getStringExtra("wmeaning")
-            val antonym = intent.getStringExtra("antonym")
-            val ameaning = intent.getStringExtra("ameaning")
+            id = intent.getStringExtra("id").toString()
+            word = intent.getStringExtra("word").toString()
+            wmeaning = intent.getStringExtra("wmeaning").toString()
+            antonym = intent.getStringExtra("antonym").toString()
+            ameaning = intent.getStringExtra("ameaning").toString()
 
             word_input?.setText(word)
             wmeaning_input?.setText(wmeaning)
@@ -81,7 +89,7 @@ public class UpdateActivity: AppCompatActivity() {
         builder.setMessage("Are you sure you want to delete $word?")
         builder.setPositiveButton("Yes") { dialog, which ->
             val myDB = MyDatabaseHelper(this)
-            myDB.deleteRow(id)
+            myDB.deleteRow(id.toString())
             //finish()
         }
         // Do nothing
